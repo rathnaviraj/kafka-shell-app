@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+
+ zookeeper:
+  image: bitnami/zookeeper
+  platform: linux/amd64
+  container_name: zookeeper
+  environment:
+   ALLOW_ANONYMOUS_LOGIN: yes
+   JMX_PORT: 8004
+  networks: 
+   - kafka_cluster
+
+ kafka:
+  image: bitnami/kafka
+  platform: linux/amd64
+  container_name: kafka
+  environment:
+   ALLOW_PLAINTEXT_LISTENER: yes
+   KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  networks:
+   - kafka_cluster
+  depends_on: 
+   - zookeeper
+
+ cmak:
+  image: rathnaviraj/cmak
+  container_name: cmak
+  environment:
+   ZK_HOSTS: zookeeper:2181
+  ports:
+   - 9000:9000
+  networks:
+   - kafka_cluster
+  depends_on:
+   - zookeeper
+   - kafka
+
+
+networks:
+ kafka_cluster:
