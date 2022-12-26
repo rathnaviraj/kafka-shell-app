@@ -1,8 +1,9 @@
-from kafka import KafkaProducer
-from faker import Faker
 import json
 import time
 import os
+
+from kafka import KafkaProducer
+from faker import Faker
 
 BOOTSTRAP_SERVER = os.environ.get('BOOTSTRAP_SERVER')
 KAFKA_TOPIC = os.environ.get('KAFKA_TOPIC')
@@ -30,3 +31,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
