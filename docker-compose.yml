@@ -8,15 +8,14 @@ services:
   container_name: zookeeper-main
   environment:
    ALLOW_ANONYMOUS_LOGIN: yes
-   JMX_PORT: 8004
 
- kafka:
+ kafka-node:
   image: bitnami/kafka
   platform: linux/amd64
-  container_name: kafka-1
   environment:
    ALLOW_PLAINTEXT_LISTENER: yes
    KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+   JMX_PORT: 8004
   depends_on: 
    - zookeeper
 
@@ -29,4 +28,4 @@ services:
    - 9000:9000
   depends_on:
    - zookeeper
-   - kafka
+   - kafka-node
