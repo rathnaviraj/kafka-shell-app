@@ -19,7 +19,7 @@ def json_serializer(data):
     return json.dumps(data).encode('utf-8')
 
 def main():
-    print(f'Server {BOOTSTRAP_SERVER} | Topic {KAFKA_TOPIC}')
+    print(f'Producing to Server {BOOTSTRAP_SERVER} | Topic {KAFKA_TOPIC}')
     producer = KafkaProducer(bootstrap_servers=[BOOTSTRAP_SERVER], value_serializer=json_serializer)
     while True:
         user = get_user()
