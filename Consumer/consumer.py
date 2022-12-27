@@ -7,6 +7,7 @@ from kafka import KafkaConsumer
 
 BOOTSTRAP_SERVER = os.environ.get('BOOTSTRAP_SERVER')
 KAFKA_TOPIC = os.environ.get('KAFKA_TOPIC')
+CONSUMER_GROUP_ID = os.environ.get('CONSUMER_GROUP_ID', 'DEFAULT')
 
 
 def main():
@@ -15,7 +16,7 @@ def main():
         KAFKA_TOPIC,
         bootstrap_servers=[BOOTSTRAP_SERVER],
         auto_offset_reset='earliest', 
-        group_id='C1'
+        group_id=CONSUMER_GROUP_ID
     )
 
     for message in  consumer:
@@ -24,4 +25,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
