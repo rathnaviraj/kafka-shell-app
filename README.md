@@ -1,5 +1,6 @@
-# kafka-shell-app
-Shell application with Kafka and CMAK 
+# Containerized Kafka Cluster with CMAK
+
+Docker containerized shell application with Kafka cluster with CMAK (Cluster Manager for Apache Kafka) GUI
 
 # Spinup Kafka Cluster with Single Broker
 
